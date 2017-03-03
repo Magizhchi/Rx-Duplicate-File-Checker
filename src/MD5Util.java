@@ -12,8 +12,9 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5Util {
 
+    HashCode hashCode = null;
+
     public String getMD5ForFile(File file){
-        HashCode hashCode = null;
         try {
             hashCode = Files.hash(file, Hashing.md5());
         } catch (IOException e) {

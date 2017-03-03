@@ -10,14 +10,16 @@ import static java.util.stream.Collectors.toList;
 public class Duplicator {
     public static void main(String[] args) {
         FileUtil fileUtil = new FileUtil();
-        MD5Util md5Util = new MD5Util();
+        DuplicateProcessor duplicateProcessor = new DuplicateProcessor();
+
         List<File> allFilesInDir = fileUtil.getAllFilesRecursively("C:\\Pictures");
 
         long startTime = System.currentTimeMillis();
-        List<String> md5List = allFilesInDir.parallelStream()
-                                            .map(md5Util::getMD5ForFile)
-                                            .collect(toList());
+        duplicateProcessor.process(allFilesInDir);
         System.out.println("Total time taken : "+ (System.currentTimeMillis() - startTime));
-        System.out.println("For a total of " + md5List.size() + " objects");
+        System.out.println("For a total of " + allFilesInDir.size() + " objects");
     }
+
+
+
 }

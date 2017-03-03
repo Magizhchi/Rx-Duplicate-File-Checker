@@ -28,7 +28,7 @@ public class FileUtil {
 
     public List<File> getAllFilesRecursively(String rootDir){
         FileUtil fileUtil = new FileUtil();
-        return getAllSubDirectoryPaths(rootDir, new ArrayList<>()).stream()
+        return getAllSubDirectoryPaths(rootDir, new ArrayList<>()).parallelStream()
                                                                   .flatMap(fileUtil::getAllFilesInDir)
                                                                   .collect(toList());
     }
